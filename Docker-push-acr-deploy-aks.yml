@@ -11,7 +11,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'edceadd3-8de0-4183-bdc7-62a7be308ecc'
-  imageRepository: 'demoprojectps'
+  imageRepository: 'demo/demoprojectps'
   containerRegistry: 'demoprojectps.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/ps-project-demo/Dockerfile'
   tag: '$(Build.BuildId)'
