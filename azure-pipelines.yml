@@ -39,6 +39,8 @@ stages:
         tags: |
           $(tag)
     #copy the file from the source folder to Artifacts folder
+    - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)        
+    - bash: echo Before copying Contents in Build Artifact Directory; ls -R $(Build.ArtifactStagingDirectory)
     - task: CopyFiles@2
       inputs:
         SourceFolder: '$(System.DefaultWorkingDirectory)/kube-manifests'
@@ -46,6 +48,7 @@ stages:
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
         OverWrite: true
     #Publish the Artifacts to Azure Pipelines
+    - bash: echo Contents in System Default Artifactory Directory; ls -R $(Build.ArtifactStagingDirectory)
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
