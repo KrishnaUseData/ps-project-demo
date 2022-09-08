@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: psdemoimage 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: psdemoimage
+  template:
+    metadata:
+      labels:
+        app: psdemoimage 
+    spec:
+      containers:
+        - name: psdemoimage 
+          image: demoprojectps.azurecr.io/psdemoimage
+          ports:
+          - containerPort: 80
