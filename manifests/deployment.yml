@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: psdemoimage 
+  name: aksdeploydemo 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: psdemoimage
+      app: aksdeploydemo
   template:
     metadata:
       labels:
-        app: psdemoimage 
+        app: aksdeploydemo 
     spec:
       containers:
-        - name: psdemoimage 
-          image: demoprojectps.azurecr.io/psdemoimage
+        - name: aksdeploydemo 
+          image: demoprojectps.azurecr.io/aksdeploydemo
           ports:
           - containerPort: 80
