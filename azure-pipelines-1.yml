@@ -33,8 +33,9 @@ stages:
     # - bash: echo "The commit id is "; $commit_id
     - script: |
           echo $(Build.SourceVersion)
-          commitHash=${(Build.SourceVersion:0:7}
-          echo $commitHash
+          set commitHash=$(Build.SourceVersion)
+          set MyCustomVar= %commitHash:~0,7%
+          echo %MyCustomVar%
           #echo "##vso[task.setvariable variable=commitHash]$commitHash" ## Set variable for using in other tasks.
           #env: { sourceVersion: $(Build.SourceVersion) }
       displayName: Git Hash 7-digit
@@ -48,7 +49,7 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-          $(commitHash)     
+          $(MyCustomVar)     
 
      #copy the file from the source folder to Artifacts folder
     - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)        
