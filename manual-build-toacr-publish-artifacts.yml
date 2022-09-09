@@ -18,13 +18,13 @@ stages:
         pool:
            vmImage: ubuntu-latest
         steps:
-          - task: SonarCloudPrepare@1
-            inputs:
-              scannerMode: 'CLI'
-              configMode: 'manual'
-              cliProjectKey: 'Devopsplaywith_project-demo'
-              cliProjectName: 'project-demo'
-              cliSources: '.'
+            #   - task: SonarCloudPrepare@1
+            #     inputs:
+            #       scannerMode: 'CLI'
+            #       configMode: 'manual'
+            #       cliProjectKey: 'Devopsplaywith_project-demo'
+            #       cliProjectName: 'project-demo'
+            #       cliSources: '.'
           - task: Docker@2
             inputs:
               containerRegistry: 'manual-acr-akr-svc'
