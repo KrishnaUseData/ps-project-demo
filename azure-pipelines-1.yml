@@ -29,8 +29,8 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - bash: git rev-parse --short=8 HEAD >> commit_id
-    - bash: echo "The commit id is "; commit_id
+    - bash: commit_id = git rev-parse --short=8 HEAD  
+    - bash: echo "The commit id is "; $commit_id
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
@@ -40,6 +40,8 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+          $(commit_id)     
+
      #copy the file from the source folder to Artifacts folder
     - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)        
     - bash: echo Before copying Contents in Build Artifact Directory; ls -R $(Build.ArtifactStagingDirectory)
