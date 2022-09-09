@@ -33,8 +33,8 @@ stages:
     # - bash: echo "The commit id is "; $commit_id
     - bash: |
           echo $(Build.SourceVersion)
-          #set commitHash=$(Build.SourceVersion)
-          MyCustomVar=${Build.SourceVersion:0:7}
+          commitHash=$(Build.SourceVersion)
+          MyCustomVar=${commitHash:0:7}
           echo "The short commit ID is :" $MyCustomVar
           set commit_id = $MyCustomVar
           #echo "##vso[task.setvariable variable=commitHash]$commitHash" ## Set variable for using in other tasks.
